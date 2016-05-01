@@ -10,7 +10,7 @@ import (
 	log "github.com/Sirupsen/logrus"
 )
 
-const electionTTL = 30
+const electionTTL = 50000
 const bootDelay = 60
 const leaderKey = "/minion/leader"
 
@@ -48,7 +48,7 @@ func watchLeader(conn db.Conn, store consensus.Store) {
 
 func campaign(conn db.Conn, store consensus.Store) {
 	watch := store.Watch(leaderKey, 1*time.Second)
-	trigg := conn.TriggerTick(electionTTL/2, db.EtcdTable)
+	trigg := conn.TriggerTick(electionTTL/5, db.EtcdTable)
 	oldMaster := false
 
 	for {
