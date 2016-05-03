@@ -47,6 +47,7 @@ var images = map[string]string{
 
 const etcdHeartbeatInterval = "500"
 const etcdElectionTimeout = "5000"
+const etcdSnapshotCount = "500000"
 
 type supervisor struct {
 	conn db.Conn
@@ -309,6 +310,7 @@ func (sv *supervisor) updateMaster(IP string, etcdIPs []string, leader bool) {
 		"--listen-client-urls=http://0.0.0.0:2379",
 		"--heartbeat-interval="+etcdHeartbeatInterval,
 		"--initial-cluster-state=new",
+		"--snapshot-count="+etcdSnapshotCount,
 		"--election-timeout="+etcdElectionTimeout)
 	sv.run(Ovsdb)
 
