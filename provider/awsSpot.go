@@ -15,7 +15,7 @@ import (
 	log "github.com/Sirupsen/logrus"
 )
 
-const spotPrice = "0.5"
+const spotPrice = "2.0"
 
 // Ubuntu 15.10, 64-bit hvm-ssd
 var amis = map[string]string{
